@@ -34,6 +34,22 @@
             <p class="single-message">{{ message.text }}</p>
             <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
           </div>
+          <form method="POST" 
+            
+            {% if message.id in likes %}
+              action="/users/remove_like/{{message.id}}"
+            {% else %}
+              action="/users/add_like/{{message.id}}"
+            {% endif %}
+            id="single-warble-messages-form">
+              <button class="
+                btn 
+                btn-sm 
+                {{'btn-primary' if message.id in likes else 'btn-secondary'}}"
+              >
+                <i class="fa fa-thumbs-up"></i> 
+              </button>
+          </form>
         </li>
       </ul>
     </div>
